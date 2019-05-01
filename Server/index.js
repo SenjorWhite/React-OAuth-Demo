@@ -5,15 +5,17 @@ const passport = require("passport");
 const PORT = 3939;
 
 require("./services/passport");
+
 app.use(
     cookieSession({
         maxAge: 60 * 60 * 1000,
-        keys: "test"
+        keys: ["test"]
     })
 );
 
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.authenticate("session"));
+//app.use(passport.session());
 
 require("./routes/routes")(app);
 

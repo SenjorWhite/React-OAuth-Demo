@@ -3,22 +3,25 @@ const users = {};
 
 const User = {
     addUser: function (userID, userName) {
-        let hash = crypto.createHash("md5").update(userID).digest("hex");
-        users[userID] = { id: hash, userID: userID, userName: userName };
-        return users[userID];
+        let hashID = crypto.createHash("md5").update(userID).digest("hex");
+        users[hashID] = { id: hashID, userID: userID, userName: userName };
+        return users[hashID];
     },
-    findUser: function (userID) {
-        let user = users[userID];
+    findUser: function (hashID) {
+        let user = users[hashID];
         return user || null;
     },
-    removeUser: function (userID) {
+    removeUser: function (hashID) {
         let isDeleted = false;
-        let user = users[userID];
+        let user = users[hashID];
         if (user) {
-            delete users[userID];
+            delete users[hashID];
             isDeleted = true;
         }
         return isDeleted;
+    },
+    getAllUsers: function () {
+        return users;
     }
 }
 
