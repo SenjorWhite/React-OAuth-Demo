@@ -20,15 +20,18 @@ module.exports = app => {
     );
 
     app.get("/api/auth/logout", (req, res) => {
-        req.logout();
-        res.send("logout");
+        if (req.user) {
+            console.log("%s Signed out", req.user.userID);
+            req.logout();
+
+        }
+        res.redirect("/home");
     })
 
     app.get("/api/current_user", (req, res) => {
-        res.send(req.user);
-    })
-
-    app.get("/api/all_users", (req, res) => {
-        res.send(user.getAllUsers());
+        let user = req.user || { userID: false };
+        res.send(user);
+        console.log("[GET][current_user]:");
+        console.log(user);
     })
 }
