@@ -13,8 +13,8 @@ passport.deserializeUser((userID, done) => {
 })
 
 passport.use(new GoogleStrategy({
-    clientID: keys.clientID,
-    clientSecret: keys.clientSecret,
+    clientID: keys.clientID || process.env.GOOGLE_CLIENT_ID,
+    clientSecret: keys.clientSecret || process.env.GOOGLE_SECRET,
     callbackURL: "/api/auth/google/callback",
     passReqToCallback: true
 },

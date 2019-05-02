@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname, "../Client/build")));
 app.use(
     cookieSession({
         maxAge: 60 * 60 * 1000,
-        keys: ["test"]
+        keys: [process.env.COOKIE_KEY || "dev_test"]
     })
 );
 
