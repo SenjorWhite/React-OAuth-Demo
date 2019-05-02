@@ -7,7 +7,7 @@ const PORT = 3939;
 
 require("./services/passport");
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.resolve(__dirname, "../Client/build")));
 
 app.use(
     cookieSession({

@@ -18,9 +18,11 @@ function Dashboard(props) {
 }
 
 function getGreeting(userInfo) {
-    return (
-        "Welcome, " + userInfo.userName + "!"
-    );
+    let greeting = "Oops, Stranger!"
+    if (userInfo) {
+        greeting = "Welcome, " + userInfo.userName + "!";
+    }
+    return greeting;
 }
 
 export default Dashboard;

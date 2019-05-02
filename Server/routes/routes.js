@@ -25,13 +25,13 @@ module.exports = app => {
     })
 
     app.get("/api/current_user", (req, res) => {
-        let user = req.user || { userID: false };
+        let user = req.user || false;
         res.send(user);
         console.log("[GET][current_user]:");
         console.log(user);
     })
 
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "../public", "index.html"));
+        res.sendFile(path.resolve(__dirname, "../../Client/build", "index.html"));
     })
 }

@@ -46,36 +46,20 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.auth) {
-      return (
-        <BrowserRouter>
-          <div className={"container"}>
-            <div>
-              <Header auth={this.state.auth} />
-              <div className="body">
-                <Route exact path="/" component={Home} />
-                <Route exact path="/home" component={Home} />
-                <Route exact path="/dashboard" component={() => (<Dashboard userInfo={this.state.userInfo} />)} />
-              </div>
+    return (
+      <BrowserRouter>
+        <div className={"container"}>
+          <div>
+            <Header auth={this.state.auth} />
+            <div className="body">
+              <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/dashboard" component={() => (<Dashboard userInfo={this.state.userInfo} />)} />
             </div>
           </div>
-        </BrowserRouter>
-      );
-    } else {
-      return (
-        <BrowserRouter>
-          <div className={"container"}>
-            <div>
-              <Header auth={this.state.auth} />
-              <div className="body">
-                <Route exact path="/" component={Home} />
-                <Route exact path="/home" component={Home} />
-              </div>
-            </div>
-          </div>
-        </BrowserRouter>
-      )
-    }
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 
