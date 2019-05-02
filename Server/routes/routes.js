@@ -1,11 +1,7 @@
 const passport = require("passport");
-const user = require("../models/User").User;
+const path = require("path");
 
 module.exports = app => {
-    app.get("/", (req, res) => {
-        res.redirect("/api/auth/google");
-    });
-
     app.get("/api/auth/google",
         passport.authenticate("google", {
             scope: ["profile", "email"]
@@ -33,5 +29,9 @@ module.exports = app => {
         res.send(user);
         console.log("[GET][current_user]:");
         console.log(user);
+    })
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../public", "index.html"));
     })
 }
