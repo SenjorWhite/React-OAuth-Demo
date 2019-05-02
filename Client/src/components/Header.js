@@ -4,43 +4,20 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            auth: null
+            auth: this.props.auth
         }
     }
 
-    componentDidMount() {
-        fetch("/api/current_user", { method: "GET" })
-            .then(res => res.json())
-            .then(userInfo => {
-                console.log("fetch");
-                console.log(userInfo);
-                if (userInfo.userID) {
-                    this.setState({
-                        auth: true
-                    })
-                } else {
-                    this.setState({
-                        auth: false
-                    })
-                }
-            })
-            .catch(error => {
-                console.log("error");
-                console.log(error);
-            })
-    }
-
     renderButton() {
-        switch (this.state.auth) {
-            case true:
-                return <li><a href="/api/auth/logout">Logout</a></li>;
+        switch (this.props.auth) {
+            case null:
+                return;
             case false:
                 return (
                     <li><a href="/api/auth/google">Sign in with Google</a></li>
                 );
             default:
-                return;
-
+                return <li><a href="/api/auth/logout">Logout</a></li>
         }
     }
 
